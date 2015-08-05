@@ -113,15 +113,15 @@ def glewInit(unsafe=False):
 	global GLEW_OGL_INFO
 
 	GLEW_OGL_INFO = collections.defaultdict(list)
-	for name in (GL_VENDOR,GL_RENDERER,GL_VERSION,GL_SHADING_LANGUAGE_VERSION,GL_EXTENSIONS):
-		GLEW_OGL_INFO[name] = glGetString(name).decode().split(' ')
+	for name in (GL_VENDOR,GL_RENDERER,GL_VERSION,GL_SHADING_LANGUAGE_VERSION):
+			GLEW_OGL_INFO[name] = glGetString(name).decode().split(' ')
 		
 	#It might be necessariy to use glGetStringi for extensions, so far glGetString has worked
 	#GLEW_OGL_INFO[GL_EXTENSIONS] = glGetStringi(GL_EXTENSIONS,<index>)
 	
 	# unique-ify extensions in set making the 'in' operator
 	# O(1) average case.
-	GLEW_OGL_INFO[GL_EXTENSIONS] = set(GLEW_OGL_INFO[GL_EXTENSIONS])
+	#GLEW_OGL_INFO[GL_EXTENSIONS] = set(GLEW_OGL_INFO[GL_EXTENSIONS])
 
 	# opengl versions as of 2014
 	ogl_version_history = {
