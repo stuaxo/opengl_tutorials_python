@@ -21,15 +21,15 @@ def main():
 	if not glfw.init():
 		return
 
-	# Open Window and create its OpenGL context
-	window = glfw.create_window(1024, 768, "Tutorial 01", None, None)
-
 	# 
 	glfw.window_hint(glfw.SAMPLES, 4)
 	glfw.window_hint(glfw.CONTEXT_VERSION_MAJOR, 3)
 	glfw.window_hint(glfw.CONTEXT_VERSION_MINOR, 3)
 	glfw.window_hint(glfw.OPENGL_FORWARD_COMPAT, GL_TRUE)
 	glfw.window_hint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
+
+	# Open Window and create its OpenGL context
+	window = glfw.create_window(1024, 768, "Tutorial 01", None, None)
  
 	if not window:
 		print("Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n",file=sys.stderr)

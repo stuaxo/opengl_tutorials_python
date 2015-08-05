@@ -290,7 +290,7 @@ def main():
     # #obj_parse_assignment["#"](c)
     # print(c)
 
-    v,f,uv,n,c = load(".\\content\\suzanne.obj");
+    v,f,uv,n,c = load("Content/suzanne.obj")
     v,uv,n = process_obj(v,f,uv,n,c)
     print(v[0])
     print(uv[0])
