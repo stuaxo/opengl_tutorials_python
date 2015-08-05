@@ -32,13 +32,14 @@ def opengl_init():
         print("Failed to initialize GLFW\n",file=sys.stderr)
         return False
 
-    # Open Window and create its OpenGL context
-    window = glfw.create_window(1024, 768, "Tutorial 06", None, None) #(in the accompanying source code this variable will be global)
     glfw.window_hint(glfw.SAMPLES, 4)
     glfw.window_hint(glfw.CONTEXT_VERSION_MAJOR, 3)
     glfw.window_hint(glfw.CONTEXT_VERSION_MINOR, 3)
     glfw.window_hint(glfw.OPENGL_FORWARD_COMPAT, GL_TRUE)
     glfw.window_hint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
+
+    # Open Window and create its OpenGL context
+    window = glfw.create_window(1024, 768, "Tutorial 06", None, None) #(in the accompanying source code this variable will be global)
 
     if not window:
         print("Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n",file=sys.stderr)
@@ -137,13 +138,13 @@ def main():
     vertex_array_id = glGenVertexArrays(1)
     glBindVertexArray( vertex_array_id )
 
-    program_id = common.LoadShaders( ".\\shaders\\Tutorial6\\TransformVertexShader.vertexshader",
-        ".\\shaders\\Tutorial6\\TextureFragmentShader.fragmentshader" )
+    program_id = common.LoadShaders( "Shaders/Tutorial6/TransformVertexShader.vertexshader",
+        "Shaders/Tutorial6/TextureFragmentShader.fragmentshader" )
     
     # Get a handle for our "MVP" uniform
     matrix_id = glGetUniformLocation(program_id, "MVP");
 
-    texture = load_image(".\\content\\uvtemplate.bmp")
+    texture = load_image("Content/uvtemplate.bmp")
     texture_id  = glGetUniformLocation(program_id, "myTextureSampler")
 
     # Our vertices. Tree consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.

@@ -35,13 +35,14 @@ def opengl_init():
         print("Failed to initialize GLFW\n",file=sys.stderr)
         return False
 
-    # Open Window and create its OpenGL context
-    window = glfw.create_window(1024, 768, "Tutorial 09", None, None) #(in the accompanying source code this variable will be global)
     glfw.window_hint(glfw.SAMPLES, 4)
     glfw.window_hint(glfw.CONTEXT_VERSION_MAJOR, 3)
     glfw.window_hint(glfw.CONTEXT_VERSION_MINOR, 3)
     glfw.window_hint(glfw.OPENGL_FORWARD_COMPAT, GL_TRUE)
     glfw.window_hint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
+
+    # Open Window and create its OpenGL context
+    window = glfw.create_window(1024, 768, "Tutorial 09", None, None) #(in the accompanying source code this variable will be global)
 
     if not window:
         print("Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n",file=sys.stderr)
@@ -104,8 +105,8 @@ def main():
     glBindVertexArray( vertex_array_id )
 
     # Create and compile our GLSL program from the shaders
-    program_id = common.LoadShaders( ".\\shaders\\Tutorial9\\StandardShading.vertexshader",
-        ".\\shaders\\Tutorial9\\StandardShading.fragmentshader" )
+    program_id = common.LoadShaders( "Shaders/Tutorial9/StandardShading.vertexshader",
+        "Shaders/Tutorial9/StandardShading.fragmentshader" )
     
     # Get a handle for our "MVP" uniform
     matrix_id = glGetUniformLocation(program_id, "MVP")
@@ -113,13 +114,13 @@ def main():
     model_matrix_id = glGetUniformLocation(program_id, "M")
 
     # Load the texture
-    texture = textureutils.load_image(".\\content\\uvmap_suzanne.bmp")
+    texture = textureutils.load_image("Content/uvmap_suzanne.bmp")
 
     # Get a handle for our "myTextureSampler" uniform
     texture_id  = glGetUniformLocation(program_id, "myTextureSampler")
 
     # Read our OBJ file
-    vertices,faces,uvs,normals,colors = objloader.load(".\\content\\suzanne.obj")
+    vertices,faces,uvs,normals,colors = objloader.load("Content/suzanne.obj")
     vertex_data,uv_data,normal_data = objloader.process_obj( vertices,faces,uvs,normals,colors)
 
     # Our OBJ loader uses Python lists, convert to ctype arrays before sending to OpenGL
